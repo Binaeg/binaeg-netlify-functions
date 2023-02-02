@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 function Navbar() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -20,7 +22,7 @@ function Navbar() {
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <img
+                <Image
                   className="h-8 w-8"
                   src="https://tailwindui.com/img/logos/mark.svg?color=lime&shade=500"
                   alt="Your Company"
@@ -28,20 +30,20 @@ function Navbar() {
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
-                  <a
+                  <Link
                     href="/dashboard"
                     className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                     aria-current="page"
                   >
                     Übersicht
-                  </a>
+                  </Link>
 
-                  <a
+                  <Link
                     href="/dashboard"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Getränketeam
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -58,7 +60,7 @@ function Navbar() {
                       onClick={toggleUserMenu}
                     >
                       <span className="sr-only">Open user menu</span>
-                      <img
+                      <Image
                         className="h-8 w-8 rounded-full"
                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                         alt=""
@@ -75,7 +77,7 @@ function Navbar() {
                       aria-labelledby="user-menu-button"
                     //   tabIndex="-1"
                     >
-                      <a
+                      <Link
                         href="/dashboard"
                         className="block px-4 py-2 text-sm text-gray-700"
                         role="menuitem"
@@ -83,9 +85,9 @@ function Navbar() {
                         id="user-menu-item-0"
                       >
                         Dein Profil
-                      </a>
+                      </Link>
 
-                      <a
+                      <Link
                         href="/dashboard"
                         className="block px-4 py-2 text-sm text-gray-700"
                         role="menuitem"
@@ -93,7 +95,7 @@ function Navbar() {
                         id="user-menu-item-2"
                       >
                         Abmelden
-                      </a>
+                      </Link>
                     </div>
                   ) : null}
                 </div>
@@ -149,36 +151,36 @@ function Navbar() {
           {mobileMenuOpen ? (
             <div>
               <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-                <a
+                <Link
                   href="/dashboard"
                   className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
                   aria-current="page"
                 >
                   Übersicht
-                </a>
+                </Link>
 
-                <a
+                <Link
                   href="/dashboard"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Getränketeam
-                </a>
+                </Link>
               </div>
               <div className="border-t border-gray-700 pt-4 pb-3">
                 <div className="mt-3 space-y-1 px-2">
-                  <a
+                  <Link
                     href="/dashboard"
                     className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                   >
                     Dein Profil
-                  </a>
+                  </Link>
 
-                  <a
+                  <Link
                     href="/dashboard"
                     className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                   >
                     Abmelden
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
