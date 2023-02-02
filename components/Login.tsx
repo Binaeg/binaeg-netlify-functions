@@ -1,10 +1,12 @@
 import React, {useState} from "react";
+import { useRouter } from "next/router";
 
 function Login() {
   const [message, setMessage] = useState("");
-  
-  const login = () => {
-    console.log("login");
+  const router = useRouter();
+
+  const navigateToDashboard = () => {
+    router.push("/dashboard");
   };
 
   const addUser = () => {
@@ -32,6 +34,7 @@ function Login() {
         .catch(function(res){
             setMessage(`Unable to add user ${userEntry?.lastname}`);
         })
+
 }
 
   return (
@@ -42,7 +45,7 @@ function Login() {
             Beatraum St. Suso
           </h1>
         </div>
-        <form className="mt-8 space-y-6" action="/dashboard" method="POST">
+        <form className="mt-8 space-y-6" action="/asd" method="POST">
         {/* <form className="mt-8 space-y-6"> */}
           <input type="hidden" name="remember" value="true" />
           <div className="-space-y-px rounded-md shadow-sm">
@@ -98,7 +101,6 @@ function Login() {
 
           <div>
             <button
-              onClick={addUser}
               className="group relative flex w-full justify-center rounded-md border border-transparent bg-lime-600 py-2 px-4 text-sm font-medium text-white hover:bg-lime-700 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2"
             >
               <span className="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -121,6 +123,9 @@ function Login() {
             <a>{message}</a>
           </div>
         </form>
+        <button onClick={navigateToDashboard}>
+          Navigiere mich zum Dashboard!
+        </button>
       </div>
     </div>
   );
