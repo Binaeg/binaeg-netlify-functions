@@ -22,11 +22,13 @@ function Navbar() {
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <Image
+                {/* <Image
                   className="h-8 w-8"
                   src="https://tailwindui.com/img/logos/mark.svg?color=lime&shade=500"
                   alt="Your Company"
-                />
+                  width="32"
+                  height="32"
+                /> */}
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
@@ -60,11 +62,11 @@ function Navbar() {
                       onClick={toggleUserMenu}
                     >
                       <span className="sr-only">Open user menu</span>
-                      <Image
+                      {/* <Image
                         className="h-8 w-8 rounded-full"
                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                         alt=""
-                      />
+                      /> */}
                     </button>
                   </div>
 
@@ -75,7 +77,7 @@ function Navbar() {
                       id="user-menu"
                       aria-orientation="vertical"
                       aria-labelledby="user-menu-button"
-                    //   tabIndex="-1"
+                      //   tabIndex="-1"
                     >
                       <Link
                         href="/dashboard"
