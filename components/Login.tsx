@@ -126,6 +126,9 @@ function Login() {
         <button onClick={navigateToDashboard}>
           Navigiere mich zum Dashboard!
         </button>
+        <button onClick={addUser}>
+          Add User
+        </button>
       </div>
     </div>
   );
