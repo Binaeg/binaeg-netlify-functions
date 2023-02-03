@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+model benutzertogetraenk {
+  id       BigInt
+  name     String   @db.String(256)
+  menge    BigInt?
+  user     user     @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_btg_benutzer")
+  getraenk getraenk @relation(fields: [name], references: [name], onDelete: NoAction, onUpdate: NoAction, map: "fk_btg_getraenk")
+
+  @@id([id, name], map: "pk_btg")
+}
+
+model getraenk {
+  name               String               @id(map: "pk_getraenk") @db.String(256)
+  preis              String               @db.Char(2)
+  benutzertogetraenk benutzertogetraenk[]
+}
+
+model rolle {
+  name            String            @id(map: "pk_rolle") @db.String(256)
+  rolletobenutzer rolletobenutzer[]
+}
+
+model rolletobenutzer {
+  name  String @db.String(256)
+  id    BigInt
+  user  user   @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rtb_benutzer")
+  rolle rolle  @relation(fields: [name], references: [name], onDelete: NoAction, onUpdate: NoAction, map: "fk_rtb_rolle")
+
+  @@id([name, id], map: "pk_rtb")
+}
+
+model user {
+  id                 BigInt               @id @default(autoincrement())
+  email              String               @db.String(255)
+  firstname          String               @db.String(255)
+  lastname           String               @db.String(255)
+  mobile             String?              @db.String(255)
+  password           String               @db.String(255)
+  benutzertogetraenk benutzertogetraenk[]
+  rolletobenutzer    rolletobenutzer[]
+}
