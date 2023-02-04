@@ -34,7 +34,7 @@ function UserTable() {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const users = await fetch("/netlify/functions/user/findUsers", {
+      const users = await fetch("/netlify/functions/findUsers", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +47,7 @@ function UserTable() {
     fetchUsers();
   });
   //     const fetchUsers = async () => {
-  //         const users = await fetch("/netlify/functions/user/findUsers", {
+  //         const users = await fetch("/netlify/functions/findUsers", {
   //           method: "POST",
   //           headers: {
   //             "Content-Type": "application/json",
