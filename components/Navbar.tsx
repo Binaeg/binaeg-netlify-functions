@@ -1,11 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 function Navbar() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // const [selectedPage, setSelectedPage] = useState(page);
+  
+  const router = useRouter();
+  const currentRoute = router.pathname;
 
   function toggleMobileMenu() {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -32,20 +36,20 @@ function Navbar() {
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
-                  <Link
-                    href="/dashboard"
-                    className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-                    aria-current="page"
-                  >
-                    Übersicht
-                  </Link>
-
-                  <Link
-                    href="/dashboard"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Getränketeam
-                  </Link>
+                <Link
+                      href="/dashboard"
+                      className={currentRoute === "/dashboard" ? "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"}
+                      aria-current="page"
+                    >
+                      Übersicht
+                    </Link>
+                    <Link
+                      href="/getraenketeam"
+                      className={currentRoute === "/getraenketeam" ? "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"}
+                      aria-current="page"
+                    >
+                      Getränketeam
+                    </Link>
                 </div>
               </div>
             </div>
@@ -55,18 +59,27 @@ function Navbar() {
                   <div>
                     <button
                       type="button"
-                      className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      className="flex max-w-xs items-center rounded-full bg-gray-800 text-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       id="user-menu-button"
                       aria-expanded="false"
                       aria-haspopup="true"
                       onClick={toggleUserMenu}
                     >
                       <span className="sr-only">Open user menu</span>
-                      {/* <Image
-                        className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      /> */}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 2424"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
                     </button>
                   </div>
 
@@ -77,13 +90,13 @@ function Navbar() {
                       id="user-menu"
                       aria-orientation="vertical"
                       aria-labelledby="user-menu-button"
-                      //   tabIndex="-1"
+                      tabIndex={-1}
                     >
                       <Link
                         href="/dashboard"
                         className="block px-4 py-2 text-sm text-gray-700"
                         role="menuitem"
-                        // tabIndex="-1"
+                        tabIndex={-1}
                         id="user-menu-item-0"
                       >
                         Dein Profil
@@ -93,7 +106,7 @@ function Navbar() {
                         href="/dashboard"
                         className="block px-4 py-2 text-sm text-gray-700"
                         role="menuitem"
-                        // tabIndex="-1"
+                        tabIndex={-1}
                         id="user-menu-item-2"
                       >
                         Abmelden
@@ -190,22 +203,20 @@ function Navbar() {
         </div>
       </nav>
 
-      <header className="bg-white shadow">
+      {/* <header className="bg-white shadow">
         <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
             Dashboard
           </h1>
         </div>
-      </header>
-      <main>
+      </header> */}
+      {/* <main>
         <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-          {/* <!-- Replace with your content --> */}
           <div className="px-4 py-6 sm:px-0">
             <div className="h-96 rounded-lg border-4 border-dashed border-gray-200"></div>
           </div>
-          {/* <!-- /End replace --> */}
         </div>
-      </main>
+      </main> */}
     </div>
   );
 }

@@ -1,10 +1,12 @@
 import { Handler } from '@netlify/functions'
 import { PrismaClient } from '@prisma/client'
+import crypto from 'crypto'
 
 const prisma = new PrismaClient();
 
+const salt = crypto.randomBytes(16).toString('hex');
+
 interface UserEntry {
-    id: string;
     email: string;
     firstname: string;
     lastname: string;
@@ -15,13 +17,13 @@ interface UserEntry {
 const handler: Handler = async (event, context) => {
     if (event.body) {
         const newUser = JSON.parse(event.body) as UserEntry;
-        await prisma.user.create({
+        await prisma.benutzer.create({
             data: {
-                id: BigInt(newUser.id),
                 email: newUser.email,
                 firstname: newUser.firstname,
                 lastname: newUser.lastname,
-                password: newUser.password,
+                password: crypto.pbkdf2Sync(newUser.password, salt, 1000, 64, 'sha512').toString('hex'),
+                salt: salt,
                 mobile: newUser.mobile
             },
         });
