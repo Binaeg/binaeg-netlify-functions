@@ -1,29 +1,28 @@
-import { Handler } from '@netlify/functions'
-import { PrismaClient } from '@prisma/client'
+import { Handler } from "@netlify/functions";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 const handler: Handler = async (event, context) => {
-    if (event.body) {
-        const users = await prisma.benutzer.findMany({
-            select: {
-                email: true,
-                firstname: true,
-                lastname: true,
-                mobile: true
-            }
-        });
+  if (event.httpMethod !== "GET") {
+    return { statusCode: 405, body: "Method Not Allowed" };
+  }
 
-        return {
-            statusCode: 200,
-            body: JSON.stringify(users)
-        };
-    }
+  const users = await prisma.benutzer.findMany({
+    select: {
+      email: true,
+      firstname: true,
+      lastname: true,
+      mobile: true,
+    },
+  });
 
-    return {
-        statusCode: 500
-    };
-}
+  if (!users) return { statusCode: 404, body: "No users found" };
 
+  return {
+    statusCode: 200,
+    body: JSON.stringify(users),
+  };
+};
 
-export { handler }
+export { handler };
